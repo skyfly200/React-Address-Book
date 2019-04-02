@@ -37,7 +37,9 @@ class App extends Component {
       addresses: [
         ...previousState.addresses,
         { name: previousState.name, address: previousState.address }
-      ]
+      ],
+      name: '',
+      address: ''
     }));
   }
 

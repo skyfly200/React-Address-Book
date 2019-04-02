@@ -20,13 +20,16 @@ class Search extends Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    var nameInput = this.refs.name;
-    var addressInput = this.refs.address;
+    if (this.refs.name.value && this.refs.address.value) {
+      var nameInput = this.refs.name;
+      var addressInput = this.refs.address;
+      nameInput.value = '';
+      addressInput.value = '';
 
-    nameInput.value = '';
-    addressInput.value = '';
-
-    this.props.onSubmit(e.target.value);
+      this.props.onSubmit(e.target.value);
+    } else {
+      // add error message
+    }
   }
 
   render() {
