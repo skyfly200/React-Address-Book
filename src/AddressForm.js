@@ -19,6 +19,13 @@ class Search extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+
+    var nameInput = this.refs.name;
+    var addressInput = this.refs.address;
+
+    nameInput.value = '';
+    addressInput.value = '';
+
     this.props.onSubmit(e.target.value);
   }
 
@@ -31,6 +38,7 @@ class Search extends Component {
             Name:&nbsp;
             <input
               type="text"
+              ref="name"
               value={this.props.name}
               onChange={this.handleNameChange}
             />
@@ -40,6 +48,7 @@ class Search extends Component {
             Address:&nbsp;
             <input
               type="text"
+              ref="address"
               value={this.props.address}
               onChange={this.handleAddressChange}
             />
