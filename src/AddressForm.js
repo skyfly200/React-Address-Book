@@ -25,6 +25,7 @@ class Search extends Component {
   render() {
     return (
       <div className="Search">
+        <h3> Add an Address </h3>
         <form onSubmit={this.handleSubmit}>
           <label>
             Name:&nbsp;

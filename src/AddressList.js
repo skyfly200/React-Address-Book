@@ -16,8 +16,12 @@ class AddressList extends Component {
     ));
     return (
       <div className="AddressList">
-        <h2> Name - Address </h2>
-        <ul> {addressList} </ul>
+        <h3> Name - Address </h3>
+        {addressList.length > 0 ? (
+          <ul> {addressList} </ul>
+        ) : (
+          <p> Add addresses below to view them here </p>
+        )}
       </div>
     );
   }

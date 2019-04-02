@@ -9,10 +9,7 @@ class App extends Component {
     super(props);
     this.state = {
       query: '',
-      addresses: [
-        { name: 'Tester', address: '123 Test Ln.' },
-        { name: 'Two', address: '456 Park Ave.' }
-      ],
+      addresses: [],
       name: '',
       address: ''
     };
