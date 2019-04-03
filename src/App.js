@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
+import List from './List.js';
+import Form from './Form.js';
 import AddressList from './AddressList.js';
 import AddressForm from './AddressForm.js';
-import Search from './Search.js';
 
 class App extends Component {
   constructor(props) {
@@ -45,21 +47,25 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1> Address Book App </h1>
-          <Search query={this.state.query} onChange={this.handleQueryChange} />
-          <AddressList
-            addresses={this.state.addresses}
-            query={this.state.query}
-          />
-          <AddressForm
-            onSubmit={this.handleFormSubmit}
-            onNameChange={this.handleNameChange}
-            onAddressChange={this.handleAddressChange}
-          />
-        </header>
-      </div>
+      <Router>
+        <div className="App">
+          <header className="App-header">
+            <h1> Address Book App </h1>
+            <AddressList
+              addresses={this.state.addresses}
+              query={this.state.query}
+              onChange={this.handleQueryChange}
+            />
+            <AddressForm
+              onSubmit={this.handleFormSubmit}
+              onNameChange={this.handleNameChange}
+              onAddressChange={this.handleAddressChange}
+            />
+            <Route exact path="/" component={List} />
+            <Route path="/new" component={Form} />
+          </header>
+        </div>
+      </Router>
     );
   }
 }

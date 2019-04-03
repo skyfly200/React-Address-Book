@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Link } from 'react-router-dom';
 
-class Search extends Component {
+class AddressForm extends Component {
   constructor(props) {
     super(props);
 
@@ -58,10 +59,14 @@ class Search extends Component {
           </label>
           <br />
           <input type="submit" />
+          &nbsp;
+          <Link to="/">
+            <button>Go Back</button>
+          </Link>
         </form>
       </div>
     );
   }
 }
 
-export default Search;
+export default AddressForm;

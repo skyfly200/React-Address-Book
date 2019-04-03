@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Link } from 'react-router-dom';
 import Address from './Address.js';
+import Search from './Search.js';
 
 class AddressList extends Component {
   render() {
@@ -16,12 +18,17 @@ class AddressList extends Component {
     ));
     return (
       <div className="AddressList">
-        <h3> Name - Address </h3>
-        {addressList.length > 0 ? (
-          <ul> {addressList} </ul>
-        ) : (
-          <p> Add addresses below to view them here </p>
-        )}
+        <Search query={this.props.query} onChange={this.props.onChange} />
+        <Link to="/new">
+          <button>Add Address</button>
+        </Link>
+        <table>
+          <tr>
+            <td>Name</td>
+            <td>Address</td>
+          </tr>
+          {addressList}
+        </table>
       </div>
     );
   }
