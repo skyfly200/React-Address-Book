@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
-import List from './List.js';
-import Form from './Form.js';
 import AddressList from './AddressList.js';
 import AddressForm from './AddressForm.js';
 
@@ -51,18 +49,20 @@ class App extends Component {
         <div className="App">
           <header className="App-header">
             <h1> Address Book App </h1>
-            <AddressList
-              addresses={this.state.addresses}
-              query={this.state.query}
-              onChange={this.handleQueryChange}
-            />
-            <AddressForm
-              onSubmit={this.handleFormSubmit}
-              onNameChange={this.handleNameChange}
-              onAddressChange={this.handleAddressChange}
-            />
-            <Route exact path="/" component={List} />
-            <Route path="/new" component={Form} />
+            <Route path="/">
+              <AddressList
+                addresses={this.state.addresses}
+                query={this.state.query}
+                onChange={this.handleQueryChange}
+              />
+            </Route>
+            <Route path="/new">
+              <AddressForm
+                onSubmit={this.handleFormSubmit}
+                onNameChange={this.handleNameChange}
+                onAddressChange={this.handleAddressChange}
+              />
+            </Route>
           </header>
         </div>
       </Router>
