@@ -14,9 +14,7 @@ class AddressList extends Component {
           entry.address.toLowerCase().indexOf(this.props.query) !== -1)
       );
     });
-    const addressList = filteredList.map(entry => (
-      <Address key={entry.name} name={entry.name} address={entry.address} />
-    ));
+
     return (
       <div className="AddressList">
         <Search query={this.props.query} onChange={this.props.onChange} />
@@ -26,7 +24,13 @@ class AddressList extends Component {
               <td>Name</td>
               <td>Address</td>
             </tr>
-            {addressList}
+            {filteredList.map(entry => (
+              <Address
+                key={entry.name}
+                name={entry.name}
+                address={entry.address}
+              />
+            ))}
           </tbody>
         </table>
       </div>

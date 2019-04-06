@@ -32,12 +32,12 @@ class AddressForm extends Component {
         <form onSubmit={this.handleSubmit}>
           <label>
             Name:&nbsp;
-            <input type="text" ref="name" value={this.props.name} />
+            <input type="text" ref="name" />
           </label>
           <br />
           <label>
             Address:&nbsp;
-            <input type="text" ref="address" value={this.props.address} />
+            <input type="text" ref="address" />
           </label>
           <br />
           <input type="submit" />
