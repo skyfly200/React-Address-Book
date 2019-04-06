@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addAddress } from '../redux/actions';
 
 class AddressForm extends Component {
   constructor(props) {
@@ -23,10 +25,12 @@ class AddressForm extends Component {
     if (this.refs.name.value && this.refs.address.value) {
       var nameInput = this.refs.name;
       var addressInput = this.refs.address;
-      nameInput.value = '';
-      addressInput.value = '';
 
       this.props.onSubmit(e.target.value);
+      this.props.addAddress({
+        name: nameInput.value,
+        address: addressInput.value
+      });
     } else {
       // add error message
     }
@@ -34,7 +38,7 @@ class AddressForm extends Component {
 
   render() {
     return (
-      <div className="Search">
+      <div className="AddressForm">
         <h3> Add an Address </h3>
         <form onSubmit={this.handleSubmit}>
           <label>
@@ -64,4 +68,7 @@ class AddressForm extends Component {
   }
 }
 
-export default AddressForm;
+export default connect(
+  null,
+  { addAddress }
+)(AddressForm);

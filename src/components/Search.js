@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { setQuery } from '../redux/actions';
 
 class Search extends Component {
   constructor(props) {
@@ -10,6 +12,7 @@ class Search extends Component {
 
   handleChange(e) {
     this.props.onChange(e.target.value);
+    this.props.setQuery(e.target.value);
   }
 
   handleSubmit(event) {
@@ -34,4 +37,7 @@ class Search extends Component {
   }
 }
 
-export default Search;
+export default connect(
+  null,
+  { setQuery }
+)(Search);

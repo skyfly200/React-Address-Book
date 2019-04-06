@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Address from './Address.js';
 import Search from './Search.js';
 
@@ -32,4 +33,8 @@ class AddressList extends Component {
   }
 }
 
-export default AddressList;
+const mapStateToProps = state => {
+  return {};
+};
+
+export default connect(mapStateToProps)(AddressList);
