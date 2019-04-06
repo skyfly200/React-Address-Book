@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Switch, Route, NavLink } from 'react-router-dom';
 import './App.css';
-import AddressList from './AddressList.js';
-import AddressForm from './AddressForm.js';
+import AddressList from './components/AddressList.js';
+import AddressForm from './components/AddressForm.js';
 
 class App extends Component {
   constructor(props) {
