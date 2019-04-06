@@ -11,7 +11,6 @@ class Search extends Component {
   }
 
   handleChange(e) {
-    this.props.onChange(e.target.value);
     this.props.setQuery(e.target.value);
   }
 

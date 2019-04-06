@@ -7,29 +7,18 @@ class AddressForm extends Component {
     super(props);
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleNameChange = this.handleNameChange.bind(this);
-    this.handleAddressChange = this.handleAddressChange.bind(this);
-  }
-
-  handleNameChange(e) {
-    this.props.onNameChange(e.target.value);
-  }
-
-  handleAddressChange(e) {
-    this.props.onAddressChange(e.target.value);
   }
 
   handleSubmit(e) {
     e.preventDefault();
+    var name = this.refs.name.value;
+    var address = this.refs.address.value;
 
-    if (this.refs.name.value && this.refs.address.value) {
-      var nameInput = this.refs.name;
-      var addressInput = this.refs.address;
-
+    if (name && address) {
       this.props.onSubmit(e.target.value);
       this.props.addAddress({
-        name: nameInput.value,
-        address: addressInput.value
+        name: name,
+        address: address
       });
     } else {
       // add error message
@@ -43,22 +32,12 @@ class AddressForm extends Component {
         <form onSubmit={this.handleSubmit}>
           <label>
             Name:&nbsp;
-            <input
-              type="text"
-              ref="name"
-              value={this.props.name}
-              onChange={this.handleNameChange}
-            />
+            <input type="text" ref="name" value={this.props.name} />
           </label>
           <br />
           <label>
             Address:&nbsp;
-            <input
-              type="text"
-              ref="address"
-              value={this.props.address}
-              onChange={this.handleAddressChange}
-            />
+            <input type="text" ref="address" value={this.props.address} />
           </label>
           <br />
           <input type="submit" />

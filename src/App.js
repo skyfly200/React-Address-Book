@@ -7,40 +7,10 @@ import AddressForm from './components/AddressForm.js';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      query: '',
-      addresses: [],
-      name: '',
-      address: ''
-    };
-
-    this.handleQueryChange = this.handleQueryChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
-    this.handleNameChange = this.handleNameChange.bind(this);
-    this.handleAddressChange = this.handleAddressChange.bind(this);
-  }
-
-  handleQueryChange(query) {
-    this.setState({ query: query });
-  }
-
-  handleNameChange(name) {
-    this.setState({ name: name });
-  }
-
-  handleAddressChange(address) {
-    this.setState({ address: address });
   }
 
   handleFormSubmit(entry, history) {
-    this.setState(previousState => ({
-      addresses: [
-        ...previousState.addresses,
-        { name: previousState.name, address: previousState.address }
-      ],
-      name: '',
-      address: ''
-    }));
     // redirect to "/"
     history.push('/');
   }
@@ -57,14 +27,7 @@ class App extends Component {
             <Route
               exact
               path="/"
-              render={props => (
-                <AddressList
-                  {...props}
-                  addresses={this.state.addresses}
-                  query={this.state.query}
-                  onChange={this.handleQueryChange}
-                />
-              )}
+              render={props => <AddressList {...props} />}
             />
             <Route
               path="/new"
@@ -72,8 +35,6 @@ class App extends Component {
                 <AddressForm
                   {...props}
                   onSubmit={entry => this.handleFormSubmit(entry, history)}
-                  onNameChange={this.handleNameChange}
-                  onAddressChange={this.handleAddressChange}
                 />
               )}
             />

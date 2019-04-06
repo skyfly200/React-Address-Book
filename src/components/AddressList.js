@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { getQuery, getAddreses } from '../redux/selectors';
 import Address from './Address.js';
 import Search from './Search.js';
 
@@ -34,7 +35,10 @@ class AddressList extends Component {
 }
 
 const mapStateToProps = state => {
-  return {};
+  return {
+    query: getQuery(state),
+    addresses: getAddreses(state)
+  };
 };
 
 export default connect(mapStateToProps)(AddressList);
