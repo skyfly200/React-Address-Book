@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import { fields } from '../fields.js';
 
 class Address extends Component {
   render() {
     return (
       <tr className="Address">
-        <td>{this.props.name}</td>
-        <td>{this.props.address}</td>
+        {fields.map(field => (
+          <td key={field}> {this.props.entry[field]} </td>
+        ))}
       </tr>
     );
   }

@@ -3,33 +3,30 @@ import { connect } from 'react-redux';
 import { getQuery, getAddreses } from '../redux/selectors';
 import Address from './Address.js';
 import Search from './Search.js';
+import { fields, entryKey } from '../fields.js';
+import { capitalize, searchFields } from '../helpers.js';
 
 class AddressList extends Component {
   render() {
     const query = this.props.query.toLowerCase();
-    const filteredList = this.props.addresses.filter(entry => {
-      return (
-        entry &&
-        (entry.name.toLowerCase().indexOf(query) !== -1 ||
-          entry.address.toLowerCase().indexOf(this.props.query) !== -1)
-      );
-    });
+    const addresses = this.props.addresses.slice();
+    const filteredList =
+      query !== ''
+        ? addresses.filter(entry => entry && searchFields(entry, fields, query))
+        : addresses;
 
     return (
       <div className="AddressList">
-        <Search query={this.props.query} onChange={this.props.onChange} />
+        <Search query={this.props.query} />
         <table>
           <tbody>
             <tr>
-              <td>Name</td>
-              <td>Address</td>
+              {fields.map(field => (
+                <td key={field}>{capitalize(field)}</td>
+              ))}
             </tr>
             {filteredList.map(entry => (
-              <Address
-                key={entry.name}
-                name={entry.name}
-                address={entry.address}
-              />
+              <Address key={entry[entryKey]} entry={entry} />
             ))}
           </tbody>
         </table>

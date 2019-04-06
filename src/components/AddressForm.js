@@ -1,27 +1,29 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addAddress } from '../redux/actions';
+import { fields, entryKey } from '../fields.js';
+import { capitalize } from '../helpers.js';
 
 class AddressForm extends Component {
   constructor(props) {
     super(props);
-
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    var name = this.refs.name.value;
-    var address = this.refs.address.value;
+    var entryFields = {};
+    for (var i in fields) {
+      let field = fields[i];
+      let value = this.refs[field].value;
+      entryFields[field] = value;
+    }
 
-    if (name && address) {
-      this.props.onSubmit(e.target.value);
-      this.props.addAddress({
-        name: name,
-        address: address
-      });
+    if (entryFields[entryKey] !== '') {
+      this.props.onSubmit();
+      this.props.addAddress(entryFields);
     } else {
-      // add error message
+      // add error message display
     }
   }
 
@@ -30,16 +32,12 @@ class AddressForm extends Component {
       <div className="AddressForm">
         <h3> Add an Address </h3>
         <form onSubmit={this.handleSubmit}>
-          <label>
-            Name:&nbsp;
-            <input type="text" ref="name" />
-          </label>
-          <br />
-          <label>
-            Address:&nbsp;
-            <input type="text" ref="address" />
-          </label>
-          <br />
+          {fields.map(field => (
+            <div key={field} className="field">
+              <label>{capitalize(field)}:&nbsp;</label>
+              <input type="text" ref={field} />
+            </div>
+          ))}
           <input type="submit" />
         </form>
       </div>

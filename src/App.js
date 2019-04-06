@@ -10,7 +10,7 @@ class App extends Component {
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
-  handleFormSubmit(entry, history) {
+  handleFormSubmit(history) {
     // redirect to "/"
     history.push('/');
   }
@@ -34,7 +34,7 @@ class App extends Component {
               render={({ props, history }) => (
                 <AddressForm
                   {...props}
-                  onSubmit={entry => this.handleFormSubmit(entry, history)}
+                  onSubmit={() => this.handleFormSubmit(history)}
                 />
               )}
             />
