@@ -14,7 +14,7 @@ function rootReducer(state = initialState, action) {
       });
     case ADD_ADDRESS:
       return Object.assign({}, state, {
-        addresses: [...state.addresses, action.address]
+        addresses: [...state.addresses, action.entry]
       });
     default:
       return state;
