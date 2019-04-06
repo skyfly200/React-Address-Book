@@ -1,2 +1,10 @@
-export const entryKey = 'name';
-export const fields = ['name', 'address', 'city', 'state', 'zip', 'phone'];
+export const entryKey = 'email';
+export const fields = [
+  'name',
+  'address',
+  'city',
+  'state',
+  'zip',
+  'email',
+  'phone'
+];
