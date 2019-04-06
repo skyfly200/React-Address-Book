@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Switch, Route, NavLink } from 'react-router-dom';
 import './App.css';
 import AddressList from './AddressList.js';
 import AddressForm from './AddressForm.js';
@@ -32,7 +32,7 @@ class App extends Component {
     this.setState({ address: address });
   }
 
-  handleFormSubmit(entry) {
+  handleFormSubmit(entry, history) {
     this.setState(previousState => ({
       addresses: [
         ...previousState.addresses,
@@ -41,31 +41,45 @@ class App extends Component {
       name: '',
       address: ''
     }));
+    // redirect to "/"
+    history.push('/');
   }
 
   render() {
     return (
-      <Router>
+      <Switch>
         <div className="App">
           <header className="App-header">
             <h1> Address Book App </h1>
-            <Route path="/">
-              <AddressList
-                addresses={this.state.addresses}
-                query={this.state.query}
-                onChange={this.handleQueryChange}
-              />
-            </Route>
-            <Route path="/new">
-              <AddressForm
-                onSubmit={this.handleFormSubmit}
-                onNameChange={this.handleNameChange}
-                onAddressChange={this.handleAddressChange}
-              />
-            </Route>
+            <nav>
+              <NavLink to="/">Find</NavLink> | <NavLink to="/new">Add</NavLink>
+            </nav>
+            <Route
+              exact
+              path="/"
+              render={props => (
+                <AddressList
+                  {...props}
+                  addresses={this.state.addresses}
+                  query={this.state.query}
+                  onChange={this.handleQueryChange}
+                />
+              )}
+            />
+            <Route
+              path="/new"
+              render={({ props, history }) => (
+                <AddressForm
+                  {...props}
+                  onSubmit={entry => this.handleFormSubmit(entry, history)}
+                  onNameChange={this.handleNameChange}
+                  onAddressChange={this.handleAddressChange}
+                />
+              )}
+            />
           </header>
         </div>
-      </Router>
+      </Switch>
     );
   }
 }

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Link } from 'react-router-dom';
 
 class AddressForm extends Component {
   constructor(props) {
@@ -59,10 +58,6 @@ class AddressForm extends Component {
           </label>
           <br />
           <input type="submit" />
-          &nbsp;
-          <Link to="/">
-            <button>Go Back</button>
-          </Link>
         </form>
       </div>
     );
