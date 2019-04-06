@@ -20,7 +20,7 @@ class App extends Component {
       <Switch>
         <div className="App">
           <header className="App-header">
-            <h1> Address Book App </h1>
+            <h1> Address Book </h1>
             <nav>
               <NavLink to="/">Find</NavLink> | <NavLink to="/new">Add</NavLink>
             </nav>
