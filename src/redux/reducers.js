@@ -1,10 +1,9 @@
+import { SET_QUERY, ADD_ADDRESS } from './actionTypes';
+
 const initialState = {
   query: '',
   addresses: []
 };
-
-const SET_QUERY = 'SET_QUERY';
-const ADD_ADDRESS = 'ADD_ADDRESS';
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
